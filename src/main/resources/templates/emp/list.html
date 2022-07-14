@@ -76,8 +76,8 @@
 									<td th:text="${emp.department.getDepartmentName()}"></td>
 									<td th:text="${#dates.format(emp.getBirth(),'yyy-MM-dd HH:mm:ss')}"></td>
 									<td>
-										<a class="btn btn-sm btn-primary" th:href="@{/user/toUpdatePage(emid=${emp.getId()})}">编辑</a>
-										<a class="btn btn-sm btn-danger">删除</a>
+										<a class="btn btn-sm btn-primary" th:href="@{/user/toUpdatePage(id=${emp.getId()})}">编辑</a>
+										<a class="btn btn-sm btn-danger" th:href="@{/user/removeEmployee(id=${emp.getId()})}">删除</a>
 									</td>
 
 								</tr>
