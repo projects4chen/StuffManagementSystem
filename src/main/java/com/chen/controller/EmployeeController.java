@@ -28,15 +28,32 @@ public class EmployeeController {
     }
 
     @RequestMapping("/user/toAddPage")
-    public String toAddStuffPage(Model model){
+    public String toAddEmployeePage(Model model){
         // 查出所有部门的信息
         Collection<Department> departments = departmentDao.getDepartments();
         model.addAttribute("departments", departments);
         return "emp/add";
     }
 
-    @RequestMapping("/user/addStuff")
-    public String addStuff(Employee employee){
+    @RequestMapping("/user/addEmployee")
+    public String addEmployee(Employee employee){
+        employeeDao.save(employee);
+        return "redirect:/user/emps";
+    }
+
+    @RequestMapping("/user/toUpdatePage")
+    public String toUpdateEmployeePage(Model model, int emid){
+        // 查出原来的信息
+        Employee employee = employeeDao.getEmployeeById(emid);
+        model.addAttribute("emp", employee);
+        // 查出所有部门的信息
+        Collection<Department> departments = departmentDao.getDepartments();
+        model.addAttribute("departments", departments);
+        return "emp/update";
+    }
+
+    @RequestMapping("/user/updateEmployee")
+    public String updateEmployee(Employee employee){
         employeeDao.save(employee);
         return "redirect:/user/emps";
     }
