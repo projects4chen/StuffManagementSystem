@@ -8,15 +8,18 @@ import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
 import org.thymeleaf.util.StringUtils;
 
+import javax.servlet.http.HttpSession;
+
 @Controller
 public class LoginController {
 
-    @RequestMapping("/user/login")
+    @RequestMapping("/login")
     public String login(@RequestParam("username") String username, @RequestParam("password") String password,
-                        Model model){
+                        Model model, HttpSession session){
         // 具体的业务
         if (!StringUtils.isEmpty(username) && "123456".equals(password)){
-            return "redirect:/main.html";
+            session.setAttribute("loginUser", username);
+            return "redirect:/user/main";
         }else {
             // 登录失败
             model.addAttribute("msg", "用户名或密码错误");
