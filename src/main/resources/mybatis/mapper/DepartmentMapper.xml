@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.chen.mapper.DepartmentMapper">
+    <resultMap id="dep" type="com.chen.pojo.Department">
+        <result property="id" column="id"/>
+        <result property="departmentName" column="department_name"/>
+    </resultMap>
+
+    <select id="getDepartments" resultMap="dep">
+        select * from stuff.departments
+    </select>
+
+    <select id="getDepartmentNameById" parameterType="Integer">
+        select department_name from stuff.departments where id=#{id}
+    </select>
+
+</mapper>

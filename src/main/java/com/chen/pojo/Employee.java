@@ -8,12 +8,12 @@ public class Employee {
     private String email;
     private Integer gender;
     private Department department;
-    private Date birth;
+    private String birth;
 
     public Employee() {
     }
 
-    public Employee(Integer id, String lastName, String email, Integer gender, Department department, Date birth) {
+    public Employee(Integer id, String lastName, String email, Integer gender, Department department, String birth) {
         this.id = id;
         this.lastName = lastName;
         this.email = email;
@@ -62,11 +62,11 @@ public class Employee {
         this.department = department;
     }
 
-    public Date getBirth() {
+    public String getBirth() {
         return birth;
     }
 
-    public void setBirth(Date birth) {
+    public void setBirth(String birth) {
         this.birth = birth;
     }
 

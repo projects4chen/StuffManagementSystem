@@ -1,7 +1,7 @@
 package com.chen.controller;
 
-import com.chen.dao.DepartmentDao;
-import com.chen.dao.EmployeeDao;
+import com.chen.mapper.DepartmentMapper;
+import com.chen.mapper.EmployeeMapper;
 import com.chen.pojo.Department;
 import com.chen.pojo.Employee;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,13 +18,13 @@ import java.util.Collection;
 public class EmployeeController {
 
     @Autowired
-    EmployeeDao employeeDao;
+    EmployeeMapper employeeDao;
     @Autowired
-    DepartmentDao departmentDao;
+    DepartmentMapper departmentDao;
 
     @RequestMapping("/user/emps")
     public String list(Model model){
-        Collection<Employee> employees = employeeDao.getAll();
+        Collection<Employee> employees = employeeDao.getAllEmps();
         model.addAttribute("emps", employees);
         return "emp/list";
     }
@@ -39,14 +39,15 @@ public class EmployeeController {
 
     @RequestMapping("/user/addEmployee")
     public String addEmployee(Employee employee){
-        employeeDao.save(employee);
+        employeeDao.addEmp(employee);
         return "redirect:/user/emps";
     }
 
     @RequestMapping("/user/toUpdatePage")
     public String toUpdateEmployeePage(Model model, @RequestParam("id") int id){
         // 查出原来的信息
-        Employee employee = employeeDao.getEmployeeById(id);
+        Employee employee = employeeDao.getEmpById(id);
+        System.out.println(employee);
         model.addAttribute("emp", employee);
         // 查出所有部门的信息
         Collection<Department> departments = departmentDao.getDepartments();
@@ -56,13 +57,13 @@ public class EmployeeController {
 
     @RequestMapping("/user/updateEmployee")
     public String updateEmployee(Employee employee){
-        employeeDao.save(employee);
+        employeeDao.updateEmp(employee);
         return "redirect:/user/emps";
     }
 
     @RequestMapping("/user/removeEmployee")
     public String removeEmployee(@RequestParam("id") Integer id){
-        employeeDao.delete(id);
+        employeeDao.removeEmpById(id);
         return "redirect:/user/emps";
     }
 }

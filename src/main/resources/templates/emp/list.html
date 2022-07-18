@@ -74,7 +74,7 @@
 									<td th:text="${emp.getEmail()}"></td>
 									<td th:text="${emp.getGender()==0?'女':'男'}"></td>
 									<td th:text="${emp.department.getDepartmentName()}"></td>
-									<td th:text="${#dates.format(emp.getBirth(),'yyy-MM-dd HH:mm:ss')}"></td>
+									<td th:text="${emp.getBirth()}"></td>
 									<td>
 										<a class="btn btn-sm btn-primary" th:href="@{/user/toUpdatePage(id=${emp.getId()})}">编辑</a>
 										<a class="btn btn-sm btn-danger" th:href="@{/user/removeEmployee(id=${emp.getId()})}">删除</a>
