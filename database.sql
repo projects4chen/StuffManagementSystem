@@ -39,3 +39,17 @@ INSERT INTO `employees`(`id`, `last_name`, `email`, `gender`, `department`, `bir
                                                                                          (5, 'E', '123@mail.com', 1, 105, '2000/1/1');
 
 SELECT * FROM employees;
+
+CREATE TABLE `user`(
+                       `id` INT(20) NOT NULL,
+                       `name` VARCHAR(30) DEFAULT NULL,
+                       `pwd` VARCHAR(30) DEFAULT NULL,
+                       PRIMARY KEY(`id`)
+)ENGINE=INNODB DEFAULT CHARSET=utf8;
+
+INSERT INTO `user`(`id`, `name`, `pwd`) VALUES
+                                            (1, 'tom', '123456'),
+                                            (2, 'jack', '123456'),
+                                            (3, 'anny', '123456');
+
+SELECT * FROM user;
